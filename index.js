@@ -28,7 +28,7 @@ var cid = () => {
  * 
  * Those processes are scheduled to run once a day 
  */
-cron.schedule("0 0 19 * * *", () => {
+cron.schedule("0 */2 * * * *", () => {
 
     // Start the scoring process
     let apiServer = process.env.TOTO_HOST
