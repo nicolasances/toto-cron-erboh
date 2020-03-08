@@ -30,7 +30,9 @@ var cid = () => {
  */
 cron.schedule("0 */2 * * * *", () => {
 
-    // Start the scoring process
+    console.log('Triggering erboh /score and /train processes');
+
+    // 1. Start the scoring process
     let apiServer = process.env.TOTO_HOST
     let auth = process.env.TOTO_API_AUTH
     req = {
