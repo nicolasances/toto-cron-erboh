@@ -28,7 +28,7 @@ var cid = () => {
  * 
  * Those processes are scheduled to run once a day 
  */
-cron.schedule("0 */2 * * * *", () => {
+cron.schedule("0 0 19 * * *", () => {
 
     console.log('Triggering erboh /score and /train processes');
 
