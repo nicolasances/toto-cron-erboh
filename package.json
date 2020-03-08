@@ -12,7 +12,8 @@
     "cron": "^1.8.2",
     "moment-timezone": "^0.5.28",
     "node-cron": "^2.0.3",
+    "request": "^2.88.2",
     "toto-api-controller": "^4.7.2",
-    "toto-event-publisher": "^6.1.1"
+    "toto-event-publisher": "^6.2.0"
   }
 }

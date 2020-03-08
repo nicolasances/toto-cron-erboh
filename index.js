@@ -2,6 +2,7 @@ var moment = require('moment-timezone');
 var totoEventPublisher = require('toto-event-publisher');
 var Controller = require('toto-api-controller');
 const cron = require("node-cron")
+var http = require('request');
 
 var apiName = 'cron-erboh';
 
@@ -30,14 +31,19 @@ var cid = () => {
 cron.schedule("0 0 19 * * *", () => {
 
     // Start the scoring process
+    let apiServer = process.env.TOTO_HOST
+    let auth = process.env.TOTO_API_AUTH
+    req = {
+        url : 'https://' + apiServer + '/apis/model/erboh/score',
+        method: 'GET',
+        headers : {
+            'User-Agent' : 'node.js',
+            'Authorization': auth, 
+            'x-correlation-id': cid()
+        }
+    }
+    http(req, (err, resp, body) => { if (err) console.log(err); });
 
     // 2. Start the training process
-    // Create a correlation id
-    correlationId = cid()
-
-    // Create the event
-    let event = {"correlationId": correlationId}
-
-    // Send the event
-    totoEventPublisher.publish('erboh-train', event)
+    totoEventPublisher.publishEvent('erboh-train', {"correlationId": cid()})
 })
